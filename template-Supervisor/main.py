@@ -1,5 +1,6 @@
 import os
 import time
+import argparse
 import numpy as np
 import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
@@ -156,7 +157,17 @@ class Runner:
     pass
 
 if __name__ == '__main__':
-    runner = Runner(Data(batch_size=64, class_number=10, data_path="../data/mnist"))
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-name", type=str, default="template-Supervisor", help="name")
+    parser.add_argument("-batch_size", type=int, default=64, help="batch size")
+    parser.add_argument("-class_number", type=int, default=10, help="type number")
+    parser.add_argument("-data_path", type=str, default="../data/mnist", help="image data")
+    args = parser.parse_args()
+
+    output_param = "name={}batch_size={},class_number={},data_path={}"
+    Tools.print_info(output_param.format(args.name, args.batch_size, args.class_number, args.data_path))
+
+    runner = Runner(Data(batch_size=args.batch_size, class_number=args.class_number, data_path=args.data_path))
     runner.train()
     runner.test()
 
