@@ -32,5 +32,5 @@
 
 
 ### 4.Summary
-> 在 `template-Summary` 中
+> 在 `template-Summary` 中，详细介绍了summary的整个流程。
 
